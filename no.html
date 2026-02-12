@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>please?</title>
+    <title>oh...</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Crimson Text', serif;
-            background: linear-gradient(to bottom, #e8eef5, #dce4f0);
+            background: linear-gradient(to bottom, #f5f5f5, #e9e9e9);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -29,6 +29,7 @@
             padding: 50px 40px;
             border-radius: 3px;
             box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            text-align: center;
         }
 
         h1 {
@@ -45,21 +46,8 @@
             color: #4a4a4a;
         }
 
-        ul {
-            text-align: left;
-            margin: 25px 0;
-            padding-left: 25px;
-            color: #4a4a4a;
-        }
-
-        li {
-            margin-bottom: 12px;
-            font-size: 18px;
-            line-height: 1.5;
-        }
-
         button {
-            padding: 15px 30px;
+            padding: 15px 35px;
             font-size: 18px;
             font-family: 'Crimson Text', serif;
             cursor: pointer;
@@ -69,123 +57,24 @@
             font-weight: 600;
             transition: all 0.2s;
             border-radius: 2px;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         button:hover {
-            background: #ff9fa6;
-            border-color: #ff9fa6;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .note {
-            font-size: 16px;
-            color: #888;
-            margin-top: 20px;
-            font-style: italic;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .success-content {
-            text-align: center;
-        }
-
-        .success-content h1 {
-            color: #ff6b7a;
-            margin-bottom: 20px;
-        }
-
-        /* Confetti styling */
-        .confetti-piece {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            pointer-events: none;
-        }
-
-        @keyframes confetti-fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
+            background: #ff9fa6;
+            border-color: #ff9fa6;
         }
     </style>
 </head>
 <body>
-    <div class="container" id="pleadingContent">
-        <h1>okay wait</h1>
-        
-        <p>really? come on now</p>
-
-        <p>let me make my case:</p>
-
-        <ul>
-            <li>we'd have an amazing time together</li>
-            <li>i know this great chocolate place we could go to</li>
-            <li>you're literally the best and i want to spend the day with you</li>
-            <li>i already have some ideas planned</li>
-            <li>please? i promise it'll be worth it</li>
-        </ul>
-
-        <p>so... what do you say?</p>
-
-        <button onclick="sayYes()">
-            yes okay fine
-        </button>
-
-        <p class="note">(notice how theres no "no" button this time)</p>
+    <div class="container">
+        <h1>damn twin, really though?</h1>
+        <p>you acc clicked no five times...</p>
+        <p style="font-size: 18px; color: #888;">maybe reconsider?</p>
+        <p style="font-size: 18px; color: #888;">please?</p>
+        <button onclick="window.location.href='index.html'">okay fine, take me back</button>
     </div>
-
-    <div class="container hidden" id="successMessage">
-        <div class="success-content">
-            <h1>YAY!</h1>
-            <p>cant wait twin!</p>
-            <p style="font-size: 18px; color: #888;">This is perfect!</p>
-        </div>
-    </div>
-
-    <script>
-        function sayYes() {
-            // Track that they clicked no 5 times then yes
-            trackRoute('no_page_yes');
-            
-            document.getElementById('pleadingContent').classList.add('hidden');
-            document.getElementById('successMessage').classList.remove('hidden');
-            
-            // Confetti
-            const colors = ['#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff'];
-            
-            for (let i = 0; i < 80; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti-piece';
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.top = '-10px';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animation = `confetti-fall ${2 + Math.random()}s linear forwards`;
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => confetti.remove(), 3000);
-                }, i * 25);
-            }
-        }
-
-        function trackRoute(action) {
-            // Get existing route or create new one
-            let route = JSON.parse(localStorage.getItem('valentineRoute') || '[]');
-            route.push({
-                action: action,
-                timestamp: new Date().toISOString()
-            });
-            localStorage.setItem('valentineRoute', JSON.stringify(route));
-            
-            // Also log to console for you to see
-            console.log('Route tracking:', route);
-        }
-    </script>
 </body>
 </html>
