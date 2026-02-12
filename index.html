@@ -116,7 +116,7 @@
 </head>
 <body>
     <div class="container" id="mainContent">
-        <h1>hey there</h1>
+        <h1>hey</h1>
         <p>so valentines day is coming up and i was wondering... would you want to be my valentine?</p>
         <div class="buttons">
             <button class="btn-yes" onclick="sayYes()">yes</button>
@@ -126,9 +126,9 @@
 
     <div class="container hidden" id="successMessage">
         <div class="success-content">
-            <h1>amazing!</h1>
-            <p>seriously cant wait for valentines day with you</p>
-            <p style="font-size: 18px; color: #888;">this is gonna be great</p>
+            <h1>YAY!</h1>
+            <p>cant wait for valentines day with you!</p>
+            <p style="font-size: 18px; color: #888;">this is gonna be great!</p>
         </div>
     </div>
 
@@ -139,11 +139,7 @@
             noClickCount++;
             const noBtn = document.getElementById('noBtn');
             
-            // Track each no click
-            trackRoute('no_click_' + noClickCount);
-            
             if (noClickCount >= 5) {
-                trackRoute('redirected_to_no_page');
                 window.location.href = 'no.html';
             } else {
                 const newSize = 18 - (noClickCount * 2);
@@ -164,8 +160,6 @@
         }
 
         function sayYes() {
-            trackRoute('direct_yes_click');
-            
             document.getElementById('mainContent').classList.add('hidden');
             document.getElementById('successMessage').classList.remove('hidden');
             
@@ -186,22 +180,6 @@
                 }, i * 25);
             }
         }
-
-        function trackRoute(action) {
-            // Get existing route or create new one
-            let route = JSON.parse(localStorage.getItem('valentineRoute') || '[]');
-            route.push({
-                action: action,
-                timestamp: new Date().toISOString()
-            });
-            localStorage.setItem('valentineRoute', JSON.stringify(route));
-            
-            // Also log to console for you to see
-            console.log('Route tracking:', route);
-        }
-
-        // Track page load
-        trackRoute('loaded_main_page');
     </script>
 </body>
 </html>
